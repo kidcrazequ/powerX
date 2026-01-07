@@ -1,0 +1,38 @@
+{
+  "province": "广东",
+  "description": "广东省电力现货市场模拟电价数据",
+  "price_mechanism": "node",
+  "base_price": 463.0,
+  "sample_data": [
+    {"trading_date": "2026-01-06", "hour": 0, "day_ahead_price": 320.5, "realtime_price": 318.2, "volume_mwh": 2500},
+    {"trading_date": "2026-01-06", "hour": 1, "day_ahead_price": 305.8, "realtime_price": 302.1, "volume_mwh": 2300},
+    {"trading_date": "2026-01-06", "hour": 2, "day_ahead_price": 295.2, "realtime_price": 298.5, "volume_mwh": 2100},
+    {"trading_date": "2026-01-06", "hour": 3, "day_ahead_price": 285.6, "realtime_price": 282.3, "volume_mwh": 2000},
+    {"trading_date": "2026-01-06", "hour": 4, "day_ahead_price": 290.3, "realtime_price": 288.7, "volume_mwh": 2050},
+    {"trading_date": "2026-01-06", "hour": 5, "day_ahead_price": 310.5, "realtime_price": 315.2, "volume_mwh": 2200},
+    {"trading_date": "2026-01-06", "hour": 6, "day_ahead_price": 380.2, "realtime_price": 385.6, "volume_mwh": 2800},
+    {"trading_date": "2026-01-06", "hour": 7, "day_ahead_price": 450.8, "realtime_price": 455.3, "volume_mwh": 3500},
+    {"trading_date": "2026-01-06", "hour": 8, "day_ahead_price": 520.5, "realtime_price": 525.8, "volume_mwh": 4200},
+    {"trading_date": "2026-01-06", "hour": 9, "day_ahead_price": 565.2, "realtime_price": 570.1, "volume_mwh": 4500},
+    {"trading_date": "2026-01-06", "hour": 10, "day_ahead_price": 580.6, "realtime_price": 578.3, "volume_mwh": 4600},
+    {"trading_date": "2026-01-06", "hour": 11, "day_ahead_price": 545.3, "realtime_price": 550.2, "volume_mwh": 4400},
+    {"trading_date": "2026-01-06", "hour": 12, "day_ahead_price": 490.5, "realtime_price": 495.8, "volume_mwh": 4000},
+    {"trading_date": "2026-01-06", "hour": 13, "day_ahead_price": 465.2, "realtime_price": 460.5, "volume_mwh": 3800},
+    {"trading_date": "2026-01-06", "hour": 14, "day_ahead_price": 450.8, "realtime_price": 455.2, "volume_mwh": 3600},
+    {"trading_date": "2026-01-06", "hour": 15, "day_ahead_price": 445.3, "realtime_price": 448.6, "volume_mwh": 3500},
+    {"trading_date": "2026-01-06", "hour": 16, "day_ahead_price": 468.5, "realtime_price": 472.3, "volume_mwh": 3800},
+    {"trading_date": "2026-01-06", "hour": 17, "day_ahead_price": 550.2, "realtime_price": 555.8, "volume_mwh": 4500},
+    {"trading_date": "2026-01-06", "hour": 18, "day_ahead_price": 620.5, "realtime_price": 625.3, "volume_mwh": 5000},
+    {"trading_date": "2026-01-06", "hour": 19, "day_ahead_price": 680.8, "realtime_price": 685.2, "volume_mwh": 5200},
+    {"trading_date": "2026-01-06", "hour": 20, "day_ahead_price": 650.3, "realtime_price": 648.5, "volume_mwh": 5000},
+    {"trading_date": "2026-01-06", "hour": 21, "day_ahead_price": 580.5, "realtime_price": 575.8, "volume_mwh": 4600},
+    {"trading_date": "2026-01-06", "hour": 22, "day_ahead_price": 450.2, "realtime_price": 455.6, "volume_mwh": 3800},
+    {"trading_date": "2026-01-06", "hour": 23, "day_ahead_price": 350.8, "realtime_price": 348.3, "volume_mwh": 3000}
+  ],
+  "nodes": [
+    {"name": "广州节点", "price_factor": 1.0},
+    {"name": "深圳节点", "price_factor": 1.05},
+    {"name": "东莞节点", "price_factor": 1.02},
+    {"name": "佛山节点", "price_factor": 0.98}
+  ]
+}

@@ -1,0 +1,210 @@
+/**
+ * PowerX 全局样式 - 增强版 (支持多主题)
+ * 
+ * 创建日期: 2026-01-07
+ * 作者: zhi.qu
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap');
+
+/* ---------------------------------------------------------
+ * 主题变量定义
+ * --------------------------------------------------------- */
+
+:root {
+  --primary-color: #1677ff;
+  --success-color: #52c41a;
+  --warning-color: #faad14;
+  --error-color: #ff4d4f;
+  
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'Roboto Mono', monospace;
+}
+
+/* 深色模式变量 */
+:root[data-theme='dark'] {
+  --bg-dark: #000000;
+  --bg-container: #141414;
+  --bg-card: #1f1f1f;
+  --text-main: rgba(255, 255, 255, 0.85);
+  --text-secondary: rgba(255, 255, 255, 0.45);
+  --border-color: rgba(255, 255, 255, 0.12);
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glow-primary: 0 0 15px rgba(22, 119, 255, 0.3);
+  --card-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.5);
+  --tech-bg-dot: rgba(255, 255, 255, 0.03);
+}
+
+/* 浅色模式变量 */
+:root[data-theme='light'] {
+  --bg-dark: #f0f2f5;
+  --bg-container: #ffffff;
+  --bg-card: #ffffff;
+  --text-main: rgba(0, 0, 0, 0.88);
+  --text-secondary: rgba(0, 0, 0, 0.45);
+  --border-color: rgba(0, 0, 0, 0.06);
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(0, 0, 0, 0.06);
+  --glow-primary: 0 0 15px rgba(22, 119, 255, 0.1);
+  --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  --tech-bg-dot: rgba(0, 0, 0, 0.02);
+}
+
+/* ---------------------------------------------------------
+ * 基础样式
+ * --------------------------------------------------------- */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  overflow-x: hidden;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* ---------------------------------------------------------
+ * 滚动条美化
+ * --------------------------------------------------------- */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--text-secondary);
+  opacity: 0.2;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+  opacity: 0.4;
+}
+
+/* ---------------------------------------------------------
+ * 核心动效与特效
+ * --------------------------------------------------------- */
+
+/* 数据字体 */
+.data-font {
+  font-family: var(--font-mono) !important;
+  letter-spacing: -0.5px;
+  font-weight: 500;
+}
+
+/* 涨跌颜色 (国际标准: 绿涨红跌) */
+.price-up {
+  color: var(--success-color) !important;
+  font-family: var(--font-mono);
+}
+.price-down {
+  color: var(--error-color) !important;
+  font-family: var(--font-mono);
+}
+
+/* 玻璃拟态卡片 */
+.glass-morphism {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+}
+
+/* 卡片悬浮动效 */
+.hover-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.hover-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--card-shadow), 0 0 20px 0 rgba(22, 119, 255, 0.05) !important;
+  border-color: rgba(22, 119, 255, 0.3) !important;
+}
+
+/* 科技感背景纹理 */
+.tech-bg {
+  background-image: 
+    radial-gradient(circle at 2px 2px, var(--tech-bg-dot) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+/* 呼吸灯效果 */
+@keyframes blink {
+  0% { opacity: 1; }
+  50% { opacity: 0.4; }
+  100% { opacity: 1; }
+}
+
+.blink {
+  animation: blink 2s infinite;
+}
+
+/* 列表行进入动效 */
+@keyframes fadeInSlide {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-in {
+  animation: fadeInSlide 0.4s ease-out forwards;
+}
+
+/* 侧边栏 Logo 霓虹灯感 */
+.logo-glow {
+  text-shadow: var(--glow-primary);
+}
+
+.text-gradient {
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ---------------------------------------------------------
+ * Ant Design 深度定制 (响应主题)
+ * --------------------------------------------------------- */
+
+/* 表格样式增强 */
+.ant-table-wrapper .ant-table {
+  background: transparent !important;
+}
+
+[data-theme='dark'] .ant-table-thead > tr > th {
+  background: rgba(255, 255, 255, 0.02) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+[data-theme='light'] .ant-table-thead > tr > th {
+  background: rgba(0, 0, 0, 0.02) !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06) !important;
+}
+
+.ant-table-tbody > tr > td {
+  border-bottom: 1px solid var(--border-color) !important;
+}
+
+.ant-table-tbody > tr:hover > td {
+  background: rgba(22, 119, 255, 0.05) !important;
+}
+
+/* 输入框聚焦效果 */
+.ant-input:focus, .ant-input-affix-wrapper-focused, .ant-picker-focused {
+  box-shadow: var(--glow-primary) !important;
+}
+
+/* 抽屉/模态框背景模糊 */
+.ant-modal-content, .ant-drawer-content {
+  background-color: var(--bg-card) !important;
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--border-color);
+}

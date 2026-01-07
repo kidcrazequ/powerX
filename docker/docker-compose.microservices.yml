@@ -1,0 +1,167 @@
+# PowerX 微服务部署配置
+# 创建日期: 2026-01-07
+# 作者: zhi.qu
+
+version: '3.8'
+
+services:
+  # API 网关
+  gateway:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.gateway
+    ports:
+      - "8000:8000"
+    environment:
+      - AUTH_SERVICE_URL=http://auth:8001
+      - TRADING_SERVICE_URL=http://trading:8002
+      - MARKET_SERVICE_URL=http://market:8003
+      - AI_SERVICE_URL=http://ai:8004
+    depends_on:
+      - auth
+      - trading
+      - market
+      - ai
+    networks:
+      - powerx-network
+
+  # 认证服务
+  auth:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.auth
+    ports:
+      - "8001:8001"
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/powerx_auth
+      - REDIS_URL=redis://redis:6379/0
+      - JWT_SECRET=${JWT_SECRET}
+    depends_on:
+      - db
+      - redis
+    networks:
+      - powerx-network
+
+  # 交易服务
+  trading:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.trading
+    ports:
+      - "8002:8002"
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/powerx_trading
+      - RABBITMQ_URL=amqp://rabbitmq:5672
+      - REDIS_URL=redis://redis:6379/1
+    depends_on:
+      - db
+      - rabbitmq
+      - redis
+    networks:
+      - powerx-network
+
+  # 市场数据服务
+  market:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.market
+    ports:
+      - "8003:8003"
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/powerx_market
+      - REDIS_URL=redis://redis:6379/2
+    depends_on:
+      - db
+      - redis
+    networks:
+      - powerx-network
+
+  # AI 服务
+  ai:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.ai
+    ports:
+      - "8004:8004"
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/powerx_ai
+      - DEEPSEEK_API_KEY=${DEEPSEEK_API_KEY}
+      - RABBITMQ_URL=amqp://rabbitmq:5672
+    depends_on:
+      - db
+      - rabbitmq
+    networks:
+      - powerx-network
+
+  # 通知服务
+  notification:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.notification
+    ports:
+      - "8005:8005"
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/powerx_notification
+      - RABBITMQ_URL=amqp://rabbitmq:5672
+      - SMTP_HOST=${SMTP_HOST}
+      - SMTP_PORT=${SMTP_PORT}
+    depends_on:
+      - db
+      - rabbitmq
+    networks:
+      - powerx-network
+
+  # 数据库
+  db:
+    image: postgres:15
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_MULTIPLE_DATABASES=powerx_auth,powerx_trading,powerx_market,powerx_ai,powerx_notification
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - powerx-network
+
+  # Redis
+  redis:
+    image: redis:7-alpine
+    command: redis-server --appendonly yes
+    volumes:
+      - redis_data:/data
+    networks:
+      - powerx-network
+
+  # RabbitMQ
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "15672:15672"
+    environment:
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=admin
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    networks:
+      - powerx-network
+
+  # 前端
+  frontend:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - gateway
+    networks:
+      - powerx-network
+
+networks:
+  powerx-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+  redis_data:
+  rabbitmq_data:
