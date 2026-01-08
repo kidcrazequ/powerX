@@ -79,14 +79,14 @@ cd frontend && npm install && npm run dev
 
 | 功能 | 说明 |
 |------|------|
-| 🔮 电价预测 | 基于历史数据和市场因素，预测 24 小时电价走势 |
-| 💡 策略推荐 | 根据风险偏好和市场状态，自动生成交易策略 |
-| 📚 政策解读 | RAG 知识库支持，智能解答电力市场政策问题 |
-| 📊 风险评估 | 实时监控持仓风险，及时预警 |
-| 📝 报告生成 | AI 自动生成日报、周报、月报 |
-| 📈 算法交易 | TWAP/VWAP 策略、条件单、组合订单 |
-| 🔐 安全合规 | 双因子认证、数据脱敏、IP 白名单 |
-| 🌐 跨省交易 | 支持跨省电力交易管理 |
+| **电价预测** | 基于历史数据和市场因素，预测 24 小时电价走势 |
+| **策略推荐** | 根据风险偏好和市场状态，自动生成交易策略 |
+| **政策解读** | RAG 知识库支持，智能解答电力市场政策问题 |
+| **风险评估** | 实时监控持仓风险，及时预警 |
+| **报告生成** | AI 自动生成日报、周报、月报 |
+| **算法交易** | TWAP/VWAP 策略、条件单、组合订单 |
+| **安全合规** | 双因子认证、数据脱敏、IP 白名单 |
+| **跨省交易** | 支持跨省电力交易管理 |
 
 ## API 文档
 
@@ -126,9 +126,9 @@ cd frontend && npm test
 
 ## 支持
 
-- ⭐ 如果 PowerX 对你有帮助，欢迎 Star 支持
-- 🐛 发现问题？欢迎提交 [Issue](https://github.com/kidcrazequ/powerX/issues)
-- 🔧 想贡献代码？欢迎提交 [Pull Request](https://github.com/kidcrazequ/powerX/pulls)
+- 如果 PowerX 对你有帮助，欢迎 **Star** 支持
+- 发现问题？欢迎提交 [Issue](https://github.com/kidcrazequ/powerX/issues)
+- 想贡献代码？欢迎提交 [Pull Request](https://github.com/kidcrazequ/powerX/pulls)
 
 ## License
 
